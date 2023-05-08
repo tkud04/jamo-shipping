@@ -11,7 +11,7 @@
 <meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
 <link rel="canonical" href="https://www.un.org/ldcportal/content/diplomatic-training" />
 <link rel="shortlink" href="https://www.un.org/ldcportal/node/939" />
-  <title>Diplomatic Delivery | LDC Portal - International Support Measures for Least Developed Countries</title>
+  <title>Track | LDC Portal - International Support Measures for Least Developed Countries</title>
   <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_CixlRIKn9XQM8CYyetjyXW68u7bBp8US4_3TvZFUGXA.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_19hbP1_IkSx28_xd1rolZcAYzMWHclD5SfN4zvYM3gw.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_LzYtTWRSzwgpMw6a8CSuZeupZm2kvyx-hbajUDynN9c.css" media="all" />
@@ -214,224 +214,112 @@
 <div class="panel-display hewston clearfix radix-hewston" id="page-page">
 
   <div class="container-fluid">
+   
     <div class="row">
-      <div class="col-md-8 radix-layouts-slider panel-panel" id="description-div">
-        <div class="panel-panel-inner">
-          <div class="panel-pane pane-fieldable-panels-pane pane-vuuid-b5e126bb-b614-4fe0-83c9-b9a27aebeac9  dark pane-bundle-text"  >
-           <div class="pane-content">
-            <div class="fieldable-panels-pane">
-             <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden">
-                <div class="field-items">
-                    <div class="field-item even">
-                        <p><em><strong><u>Contact us</u>:&nbsp;</strong>
-                         <ul>
-                            <li>Email address: <b>unoperationpress.officenato1@gmail.com</b></li>
-                            <li>Phone number: <b>+12148568080</b></li>
-                         </ul>
-                        </p>
+        <div class="col-md-12">
+            <div class="search-found">
+                <div class="search-bar">
+                    <label>Track Another Package:</label>
+                    <form>
+                        <input type="text" id="track-another-tnum" placeholder="Enter your tracking number">
+                        <button type="submit" id="track-another-submit" class="theme-btn mt-3"><i class="fa fa-paper-plane"></i> SUBMIT</button>
+                    </form>
+                    <h4>Result Found: <span>"{{$t['tnum']}}: {{$t['origin']}} office - {{$t['dest']}} office"</span></h4>
+                </div>
+                <div class="top-margin mb-5">
+                <div class="news-box news-list">
+                    <div class="news-thumb">
+                            <a href="javascript:void(0)" title="" itemprop="url"><img itemprop="image" src="images/resource/search-found-post.jpg" alt=""></a>
+                    </div>
+                    <div class="news-detail">
+                        <h2 itemprop="headline"><a itemprop="url" href="javascript:void(0)" title="">Shipment Travel History</a></h2>
+                        <div class="row">
+                        <div class="col-md-12">
+                        <div class="table-responsive">
+                          <table class="table table-striped table-sm data-table">
+                            <thead>
+                               <tr>
+                                 <th>Tracking #</th>
+                                 <th>Location</th>
+                                 <th>Status</th>
+                                 <th>Date/Time</th>
+                                 <th>Remarks</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                              @foreach($history as $h)
+                              <tr>
+                                <td>{{$h['tnum']}}</td>
+                                <td>{{$h['location']}}</td>
+                                <td>{{$statuses[$h['status']]}}</td>
+                                <td>{{$h['date']}}</td>
+                                <td>{{$h['remarks']}}</td>
+                              </tr>
+                              @endforeach
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-             </div>
-           </div>
-         </div>
-      </div>
-      <div class="panel-separator"></div>
-
-      <div class="panel-pane pane-fieldable-panels-pane pane-vuuid-b5e126bb-b614-4fe0-83c9-b9a27aebeac9  dark pane-bundle-text"  >
-        <div class="pane-content">
-         <div class="fieldable-panels-pane">
-          <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden">
-             <div class="field-items">
-                 <div class="field-item even">
-                     <p><em><strong><u>Please note</u>:&nbsp;</strong>Links, citations or other references to external websites or documents should not be seen as an endorsement on the part of the United Nations of external organizations not part of the United Nations system, including non-governmental organizations, or of commercial products or services.</em></p>
-                 </div>
-             </div>
-          </div>
-        </div>
-      </div>
-   </div>
-   <div class="panel-separator"></div>
-      
-      <div class="panel-pane pane-entity-field pane-node-body"  >
-
-  <div class="pane-content">
-    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><p style="text-align:justify">Several initiatives are in place to support capacity-building in negotiation and other diplomatic skills in LDCs:</p>
-<ul>
-<li style="text-align: justify;">UNITAR has fellowships for nationals of LDCs to participate in its <a href="#">Multilateral Diplomacy Programme </a>and core diplomatic training courses, and has special thematic courses and toolkits for LDCs;</li>
-<li style="text-align: justify;">The WTO secretariat conducts courses for LDC participants on WTO issues and give LDCs priority in <a href="#">technical assistance and training</a>. The LDC Group benefits from the support of a dedicated resource person in the LDC unit of the WTO’s Development Division. The “<a href="#">China Programme</a>” at the WTO provides support to an internship programme; annual round tables on accession-related themes; the participation of LDC coordinators in selected meetings;&nbsp;a South-South dialogue on LDCs and development, among other forms of support.</li>
-<li>The&nbsp;<a href="#">Advisory Centre on WTO Law (ACWL)</a>&nbsp;provides legal advice on issues related to WTO, WTO dispute settlement support and capacity-building, and LDCs do not have to join as members in order to benefit from its services.</li>
-<li style="text-align: justify;">The <a href="#">Voluntary Technical Assistance Trust Fund to Support the Participation of Least Developed Countries and Small Island Developing States in the Work of the Human Rights Council</a>&nbsp;(SIDS/LDCs Trust Fund)&nbsp;provides providing training on human rights and engagement with the Council, fellowship programmes and practical induction trainings for delegates, annual briefings to delegates in New York on the engagement with the General Assembly, and regional workshops.</li>
-<li style="text-align: justify;">The LDCF (Least Developed Countries Fund; climate change) has funded programmes to build capacity of LDCs to participate effectively in climate change processes, including training of senior government officials, development of negotiation strategies and knowledge products (see, for example, <a href="#">Becoming a UNFCCC delegate: what you need to know</a>&nbsp;(PDF), 2018). &nbsp;The LDC Group maintains a list of resources for LDC climate change negotiators.</li>
-<li style="text-align: justify;">The <a href="#">International Institute for Environment and Development (IIED)</a> supports the LDC Group with on-demand legal, strategic and technical advice in climate negotiations.<br />
-	&nbsp;</li>
-</ul>
-</div></div></div>  </div>
-
-  
-  </div>
-<div class="panel-separator"></div><div class="panel-pane pane-node-links link-wrapper"  >
-  
-      
-  
-  <div class="pane-content">
-      </div>
-
-  
-  </div>
-<div class="panel-separator"></div><div class="panel-pane pane-entity-field pane-node-field-featured-categories"  >
-  
-      
-  
-  <div class="pane-content">
-    <div class="field field-name-field-featured-categories field-type-taxonomy-term-reference field-label-inline clearfix"><div class="field-label">Categories:&nbsp;</div><div class="field-items"><div class="field-item even"><a href="#">Support to participation in international forums</a></div></div></div>  </div>
-
-  
-  </div>
-        </div>
-      </div>
-      <div class="col-md-8 radix-layouts-slider panel-panel" id="track-results-div">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="search-found">
-                    <div class="search-bar">
-                        <label>Track Another Package:</label>
-                        <form>
-                            <input type="text" id="track-another-tnum" placeholder="Enter your tracking number">
-                            <button type="submit" id="track-another-submit" class="theme-btn mt-3"><i class="fa fa-paper-plane"></i> SUBMIT</button>
-                        </form>
-                        <h4>Result Found: <span>"{{$t['tnum']}}: {{$t['origin']}} office - {{$t['dest']}} office"</span></h4>
-                    </div>
-                    <div class="top-margin mb-5">
+                </div>
+                <div class="top-margin">
                     <div class="news-box news-list">
                         <div class="news-thumb">
-                                <a href="javascript:void(0)" title="" itemprop="url"><img itemprop="image" src="images/resource/search-found-post.jpg" alt=""></a>
+                            <a href="javascript:void(0)" title="" itemprop="url"><img itemprop="image" src="images/resource/search-found-post.jpg" alt=""></a>
                         </div>
                         <div class="news-detail">
-                            <h2 itemprop="headline"><a itemprop="url" href="javascript:void(0)" title="">Shipment Travel History</a></h2>
+                            <h2 itemprop="headline"><a itemprop="url" href="javascript:void(0)" title="">Tracking Information</a></h2>
                             <div class="row">
-                            <div class="col-md-12">
-                            <div class="table-responsive">
-                              <table class="table table-striped table-sm data-table">
-                                <thead>
-                                   <tr>
-                                     <th>Tracking #</th>
-                                     <th>Location</th>
-                                     <th>Status</th>
-                                     <th>Date/Time</th>
-                                     <th>Remarks</th>
-                                   </tr>
-                                </thead>
-                                <tbody>
-                                  @foreach($history as $h)
-                                  <tr>
-                                    <td>{{$h['tnum']}}</td>
-                                    <td>{{$h['location']}}</td>
-                                    <td>{{$statuses[$h['status']]}}</td>
-                                    <td>{{$h['date']}}</td>
-                                    <td>{{$h['remarks']}}</td>
-                                  </tr>
-                                  @endforeach
-                                </tbody>
-                              </table>
+                            <div class="col-md-6">
+                            <dl class="row">
+                               <dt class="col-md-3">Shipper name</dt>
+                               <dd class="col-md-9">{{$shipper['name']}}</dd>
+                               <dt class="col-md-3">Shipper phone</dt>
+                               <dd class="col-md-9">{{$shipper['phone']}}</dd>
+                               <dt class="col-md-3 mb-3">Shipper address</dt>
+                               <dd class="col-md-9 mb-3">{{$shipper['address']}}</dd>
+
+                               <dt class="col-md-3">Receiver name</dt>
+                               <dd class="col-md-9">{{$receiver['name']}}</dd>
+                               <dt class="col-md-3">Receiver phone</dt>
+                               <dd class="col-md-9">{{$receiver['phone']}}</dd>
+                               <dt class="col-md-3 mb-3">Receiver address</dt>
+                               <dd class="col-md-9 mb-3">{{$receiver['address']}}</dd>
+                               <dt class="col-md-3 mb-3">Description</dt>
+                               <dd class="col-md-9 mb-3">{{$t['description']}}</dd>                                           
+                               <dt class="col-md-3">Tracking #</dt>
+                               <dd class="col-md-9">{{$t['tnum']}}</dd>
+                              
+                           </dl>
                             </div>
+                            <div class="col-md-6">
+                            <dl class="row">
+                               <dt class="col-md-3">Ship Type</dt>
+                               <dd class="col-md-9">{{$t['stype']}}</dd>
+                               <dt class="col-md-3 mb-3">Weight</dt>
+                               <dd class="col-md-9 mb-3">{{$t['weight']}}kg</dd>
+                               <dt class="col-md-3">Origin office</dt>
+                               <dd class="col-md-9">{{$t['origin']}}</dd>
+                               <dt class="col-md-3">Destination office</dt>
+                               <dd class="col-md-9">{{$t['dest']}}</dd>
+                               <dt class="col-md-3">Date issued</dt>
+                               <dd class="col-md-9">{{$t['date']}}</dd>
+                               <dt class="col-md-3 mb-3">Pickup date</dt>
+                               <dd class="col-md-9 mb-3">{{$t['pickup_at']}}</dd>
+                               <dt class="col-md-3">Booking mode</dt>
+                               <dd class="col-md-9"><span class="badge bg-primary">{{strtoupper($t['bmode'])}}</span></dd>
+                               <dt class="col-md-3">Total freight</dt>
+                               <dd class="col-md-9">${{number_format($t['freight'],2)}}</dd>
+                           </dl>
                             </div>
-                            </div>
+                          </div>
                         </div>
                     </div>
-                    </div>
-                    <div class="top-margin">
-                        <div class="news-box news-list">
-                            <div class="news-thumb">
-                                <a href="javascript:void(0)" title="" itemprop="url"><img itemprop="image" src="images/resource/search-found-post.jpg" alt=""></a>
-                            </div>
-                            <div class="news-detail">
-                                <h2 itemprop="headline"><a itemprop="url" href="javascript:void(0)" title="">Tracking Information</a></h2>
-                                <div class="row">
-                                <div class="col-md-6">
-                                <dl class="row">
-                                   <dt class="col-md-3">Shipper name</dt>
-                                   <dd class="col-md-9">{{$shipper['name']}}</dd>
-                                   <dt class="col-md-3">Shipper phone</dt>
-                                   <dd class="col-md-9">{{$shipper['phone']}}</dd>
-                                   <dt class="col-md-3 mb-3">Shipper address</dt>
-                                   <dd class="col-md-9 mb-3">{{$shipper['address']}}</dd>
-
-                                   <dt class="col-md-3">Receiver name</dt>
-                                   <dd class="col-md-9">{{$receiver['name']}}</dd>
-                                   <dt class="col-md-3">Receiver phone</dt>
-                                   <dd class="col-md-9">{{$receiver['phone']}}</dd>
-                                   <dt class="col-md-3 mb-3">Receiver address</dt>
-                                   <dd class="col-md-9 mb-3">{{$receiver['address']}}</dd>
-                                   <dt class="col-md-3 mb-3">Description</dt>
-                                   <dd class="col-md-9 mb-3">{{$t['description']}}</dd>                                           
-                                   <dt class="col-md-3">Tracking #</dt>
-                                   <dd class="col-md-9">{{$t['tnum']}}</dd>
-                                  
-                               </dl>
-                                </div>
-                                <div class="col-md-6">
-                                <dl class="row">
-                                   <dt class="col-md-3">Ship Type</dt>
-                                   <dd class="col-md-9">{{$t['stype']}}</dd>
-                                   <dt class="col-md-3 mb-3">Weight</dt>
-                                   <dd class="col-md-9 mb-3">{{$t['weight']}}kg</dd>
-                                   <dt class="col-md-3">Origin office</dt>
-                                   <dd class="col-md-9">{{$t['origin']}}</dd>
-                                   <dt class="col-md-3">Destination office</dt>
-                                   <dd class="col-md-9">{{$t['dest']}}</dd>
-                                   <dt class="col-md-3">Date issued</dt>
-                                   <dd class="col-md-9">{{$t['date']}}</dd>
-                                   <dt class="col-md-3 mb-3">Pickup date</dt>
-                                   <dd class="col-md-9 mb-3">{{$t['pickup_at']}}</dd>
-                                   <dt class="col-md-3">Booking mode</dt>
-                                   <dd class="col-md-9"><span class="badge bg-primary">{{strtoupper($t['bmode'])}}</span></dd>
-                                   <dt class="col-md-3">Total freight</dt>
-                                   <dd class="col-md-9">${{number_format($t['freight'],2)}}</dd>
-                               </dl>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>											
-            </div>
+                </div>
+            </div>											
         </div>
-      </div>
-
-      <div class="col-md-4 radix-layouts-slidergutter panel-panel">
-        <div class="panel-panel-inner">
-          <div class="panel-pane pane-fieldable-panels-pane pane-vuuid-4050d509-21a2-446a-864b-8d2e70cf0583 pane-bundle-image"  >
-  
-      
-  
-  <div class="pane-content">
-    <div class="fieldable-panels-pane">
-    <div class="field field-name-field-basic-image-image field-type-image field-label-hidden"><div class="field-items"><div class="field-item even"><img class="panopoly-image-full img-responsive" src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/styles/panopoly_image_full/public/general/un_giulio_napolitano_food_summit_2021.jpg?itok=oPQGgSgX" alt="" title="Photo UN/Giulio Napolitano" /></div></div></div><div class="field field-name-field-basic-image-caption field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><p>Photo UN/Giulio Napolitano</p>
-</div></div></div></div>
-  </div>
-
-  
-  </div>
-<div class="panel-separator"></div><div class="panel-pane pane-menu-tree pane-main-menu"  >
-  
-        <h5 class="pane-title">
-      Support for the participation of LDCs in international forums    </h5>
-    
-  
-  <div class="pane-content">
-    <div class="menu-block-wrapper menu-block-ctools-main-menu-1 menu-name-main-menu parent-mlid-0 menu-level-2">
-  <ul class="menu nav"><li class="first leaf menu-mlid-10197"><a href="#">Caps and discounts on the contribution of LDCs to the United Nations system budgets</a></li>
-<li class="leaf menu-mlid-10200"><a href="#">Support for travel to attend international conferencces</a></li>
-<li class="leaf active-trail active menu-mlid-10203 active active"><a href="#" class="active-trail active">Diplomatic training</a></li>
-<li class="leaf menu-mlid-10539"><a href="#">Advocacy, consultations, negotiations, conferences</a></li>
-<li class="last leaf menu-mlid-10206"><a href="#">Other forms of support for participation in international forums</a></li>
-</ul></div>
-  </div>
-
-  
-  </div>
-        </div>
-      </div>
     </div>
     
     <div class="row">
@@ -579,56 +467,5 @@ visibility: visible !important;
   </div>
   <script src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/js/js_29qYXJz8NLGg8Aomg-RZPjJcj9yEdEst1BMZ9gZbs-4.js"></script>
 <script src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
-
-<script>
-    jQuery(document).ready(() => {
-        jQuery('#track-results-div').hide()
-
-        jQuery('#track-submit').click((e) => {
-            e.preventDefault()
-            let tnum = jQuery('#tnum').val()
-
-            if(tnum.length < 1){
-             alert('Enter your tracking number')
-            }
-            else{
-              getTracking(tnum)
-            }
-        })
-    })
-
-    const getTracking = async (tnum) => {
-        let req = new Request(`http://localhost:8000/api/yyy?xf=${tnum}`)
-        let response = null
-
-        try{
-         response = await fetch(req)
-        }
-        catch(err){
-         console.log({err})
-        }
-
-       if(response.status === 200){
-         const responseJSON = await response.json()
-        
-         if(responseJSON?.status === 'ok'){
-            console.log({responseJSON})
-            if(responseJSON.data.length < 1){
-                alert('Tracking information not found, please try again')
-            }
-            else{
-              //show trackings div
-              jQuery('#track-results-div').fadeIn()
-            }
-         }else{
-          alert('Tracking information not found, please try again')
-         }
-       }
-       else{
-        alert('We could not process your request, please try again in a few minutes')
-       }
-
-    }
-</script>
 </body>
 </html>
