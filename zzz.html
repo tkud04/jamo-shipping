@@ -11,7 +11,7 @@
 <meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
 <link rel="canonical" href="https://www.un.org/ldcportal/content/diplomatic-training" />
 <link rel="shortlink" href="https://www.un.org/ldcportal/node/939" />
-  <title>Add Tracking | LDC Portal - International Support Measures for Least Developed Countries</title>
+  <title>View Tracking | LDC Portal - International Support Measures for Least Developed Countries</title>
   <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_CixlRIKn9XQM8CYyetjyXW68u7bBp8US4_3TvZFUGXA.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_19hbP1_IkSx28_xd1rolZcAYzMWHclD5SfN4zvYM3gw.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_LzYtTWRSzwgpMw6a8CSuZeupZm2kvyx-hbajUDynN9c.css" media="all" />
@@ -213,7 +213,9 @@
    
     <div class="row">
         <div class="col-md-12">
-          <form id="add-tracking-form">
+            <a href="#" id="add-history-btn">Add Tracking History</a>
+          <form id="update-tracking-form">
+            <input type="hidden" id="xf" value=""/>
             <div class="row">
                <div class="mb-3 form-group col-md-12">
                 <h2 class="">Shipper Information</h2>
@@ -465,11 +467,23 @@ visibility: visible !important;
 
 <script>
   jQuery(document).ready(() => {
+    const params = new URLSearchParams(location.search)
+    let xf = params.get('xf')
+    console.log({xf})
+    if(xf.length > 0){
+      getTracking(xf)
+    }
+
+    jQuery('#add-history-btn').click(e => {
+        e.preventDefault()
+        window.location.replace(`qqq.html?xf=${xf}`)
+    })
+
     jQuery('#add-tracking-submit').click(e => {
       e.preventDefault()
 
       // hideElem('#track-popup-tnum-error');
-      let sname = jQuery('#sname').val(), sadd = jQuery('#sadd').val(),  sphone = jQuery('#sphone').val(),
+      let xf = jQuery('#xf').val(), sname = jQuery('#sname').val(), sadd = jQuery('#sadd').val(),  sphone = jQuery('#sphone').val(),
       rname = jQuery('#rname').val(), radd = jQuery('#radd').val(), rphone = jQuery('#rphone').val()
 
       let stype= jQuery('#stype').val(), weight = jQuery('#weight').val(), origin = jQuery('#origin').val(), dest = jQuery('#dest').val(),
@@ -488,6 +502,7 @@ visibility: visible !important;
       else{
     
        let fd = new FormData()
+       fd.append('tnum',xf)
        fd.append('sname',sname)
        fd.append('sphone',sphone)
        fd.append('sadd',sadd)
@@ -512,6 +527,40 @@ visibility: visible !important;
      
     })
   })
+
+  const getTracking = async (tnum) => {
+        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/yyy?xf=${tnum}`)
+        let response = null
+
+        try{
+         response = await fetch(req)
+        }
+        catch(err){
+         console.log({err})
+        }
+
+       if(response.status === 200){
+         const responseJSON = await response.json()
+        console.log({responseJSON})
+         if(responseJSON?.status === 'ok'){
+            
+            if(responseJSON.data.length < 1){
+                alert('Tracking information not found, please try again')
+            }
+            else{
+              //show trackings div
+              let dt = responseJSON?.data
+              updateResult(dt)
+            }
+         }else{
+          alert('Tracking information not found, please try again')
+         }
+       }
+       else{
+        alert('We could not process your request, please try again in a few minutes')
+       }
+
+    }
 
   const addTracking = async (fd) => {
         let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/xxx`,
@@ -546,6 +595,25 @@ visibility: visible !important;
         alert('We could not process your request, please try again in a few minutes')
        }
 
+    }
+
+    const updateResult = (dt) => {
+        jQuery('#xf').val(dt?.tnum)
+        jQuery('#sname').val(dt?.shipper?.name)
+        jQuery('#sadd').val(dt?.shipper?.address)
+        jQuery('#sphone').val(dt?.shipper?.phone)
+        jQuery('#rname').val(dt?.receiver?.name)
+        jQuery('#radd').val(dt?.receiver?.address)
+        jQuery('#rphone').val(dt?.receiver?.phone)
+        jQuery('#stype').val(dt?.stype)
+        jQuery('#weight').val(dt?.weight)
+        jQuery('#origin').val(dt?.origin)
+        jQuery('#dest').val(dt?.dest)
+        jQuery('#bmode').val(dt?.bmode)
+        jQuery('#freight').val(dt?.freight)
+        jQuery('#description').val(dt?.description)
+        jQuery('#tracking-status').val(dt?.status)
+        jQuery('#pickup-at').val(dt?.pickup_at)
     }
 </script>
 </body>

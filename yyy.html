@@ -11,7 +11,7 @@
 <meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
 <link rel="canonical" href="https://www.un.org/ldcportal/content/diplomatic-training" />
 <link rel="shortlink" href="https://www.un.org/ldcportal/node/939" />
-  <title>Add Tracking | LDC Portal - International Support Measures for Least Developed Countries</title>
+  <title>Trackings | LDC Portal - International Support Measures for Least Developed Countries</title>
   <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_CixlRIKn9XQM8CYyetjyXW68u7bBp8US4_3TvZFUGXA.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_19hbP1_IkSx28_xd1rolZcAYzMWHclD5SfN4zvYM3gw.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_LzYtTWRSzwgpMw6a8CSuZeupZm2kvyx-hbajUDynN9c.css" media="all" />
@@ -213,107 +213,23 @@
    
     <div class="row">
         <div class="col-md-12">
-          <form id="add-tracking-form">
-            <div class="row">
-               <div class="mb-3 form-group col-md-12">
-                <h2 class="">Shipper Information</h2>
-          </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Name</label>
-                  <input type="text" class="form-control" id="sname" name="sname" placeholder="Shipper name">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Phone number</label>
-                  <input type="number" class="form-control" id="sphone" name="sphone" placeholder="Shipper phone number">
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Address</label>
-                  <input type="text" class="form-control" id="sadd" name="sadd" placeholder="Shipper address">
-                </div>
-            </div>
- 
-            <div class="row mt-5">
-               <div class="mb-3 form-group col-md-12">
-                <h2 class="">Receiver Information</h2>
-          </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Name</label>
-                  <input type="text" class="form-control" id="rname" name="rname" placeholder="Receiver name">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Phone number</label>
-                  <input type="number" class="form-control" id="rphone" name="rphone" placeholder="Receiver phone number">
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Address</label>
-                  <input type="text" class="form-control" id="radd" name="radd" placeholder="Receiver address">
-                </div>
-            </div>
- 
- 
-            <div class="row mt-5">
-               <div class="mb-3 form-group col-md-12">
-                <h2 class="">Shipping Information</h2>
-          </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Ship Type</label>
-                  <input type="text" class="form-control" id="stype" name="stype" placeholder="Ship type">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Weight (kg)</label>
-                  <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight (kg)">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Origin Office</label>
-                  <input type="text" class="form-control" id="origin" name="origin" placeholder="Origin office">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Destination Office</label>
-                  <input type="text" class="form-control" id="dest" name="dest" placeholder="Destination office">
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Description</label>
-                  <textarea class="form-control" id="description" name="description" placeholder="Description" rows="15"></textarea>
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Freight ($)</label>
-                  <input type="text" class="form-control" id="freight" name="freight" placeholder="Freight ($)">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Booking mode</label>
-                 <select class="form-control" id="bmode" name="bmode">
-                     <option value="none">Select booking mode</option>
-                     <option value="paid">Paid</option>
-                     <option value="unpaid">Unpaid</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Mode</label>
-                  <input type="text" class="form-control" id="mode" name="mode" placeholder="Mode">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Tracking Status</label>
-                  <select class="form-control" id="tracking-status" name="status">
-                      <option value="none">Select status</option>
-                      <option value="station">ARRIVED AT STATION</option>
-                      <option value="hold">ON HOLD</option>
-                      <option value="transit">IN TRANSIT</option>
-                      <option value="delivery">OUT FOR DELIVERY</option>
-                      <option value="delivered">DELIVERED</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Pickup Date</label>
-                  <input type="text" class="form-control" id="pickup-at" name="pickup_at" placeholder="Pickup date (dd/mm/YYYY)">
-                </div>
- 
-                <div class="form-group col-md-12 mt-3">
-                  <button class="btn btn-primary" id="add-tracking-submit">SUBMIT</button>
-                </div>
-            </div>
- 
-            
-          </form>										
+            <div class="table-responsive">
+                <table class="table table-striped table-sm data-table">
+                  <thead>
+                    <tr>
+                     <th>Transaction No.</th>
+                      <th>Details</th>
+                      <th>Shipper Information</th>
+                      <th>Receiver Information</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="results-tbody">
+                    
+                  </tbody>
+                </table>
+              </div>
         </div>
     </div>
     
@@ -465,6 +381,8 @@ visibility: visible !important;
 
 <script>
   jQuery(document).ready(() => {
+    getTrackings()
+
     jQuery('#add-tracking-submit').click(e => {
       e.preventDefault()
 
@@ -513,12 +431,8 @@ visibility: visible !important;
     })
   })
 
-  const addTracking = async (fd) => {
-        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/xxx`,
-        {
-          method: 'POST',
-          body: fd
-        })
+  const getTrackings = async () => {
+        let req = new Request(`http://localhost:8000/api/xxx`)
 
         let response = null
 
@@ -534,10 +448,63 @@ visibility: visible !important;
          console.log({responseJSON})
 
          if(responseJSON?.status === 'ok'){
-             alert('Tracking information added!')
-             window.location.replace('yyy.html')
+            if(responseJSON?.data.length > 0){
+             let htmlData = ``
+             let statuses = {
+                'none': "Select status", 
+                'station': "ARRIVED AT STATION", 
+                'hold': "ON HOLD", 
+                'transit': "IN TRANSIT", 
+                'delivery': "OUT FOR DELIVERY", 
+                'delivered': "DELIVERED"
+             }
+             
+                        
+
+             for(let t of responseJSON?.data){
+                let tu = `zzz.html?xf=${t?.tnum}`
+               htmlData += `
+               <tr>
+               <td>${t?.tnum}</td>
+               <td>
+                        <ul class="no-dot">
+                          <li>Ship Type: ${t?.stype}</li>
+                          <li>Weight: ${t?.weight}kg</li>
+                          <li>Origin office: ${t?.origin}</li>
+                          <li>Destination office: ${t?.dest}</li>
+                        </ul>
+                </td>
+                <td>
+                        <ul class="no-dot">
+                          <li>Name: ${t?.shipper?.name}</li>
+                          <li>Phone: ${t?.shipper?.phone}</li>
+                          <li>Address: ${t?.shipper?.address}</li>
+                        </ul>
+                </td>
+                <td>
+                        <ul class="no-dot">
+                          <li>Name: ${t?.receiver?.name}</li>
+                          <li>Phone: ${t?.receiver?.phone}</li>
+                          <li>Address: ${t?.receiver?.address}</li>
+                        </ul>
+                </td>
+                <td><span class="badge bg-info">${statuses[t?.status]}</span></td>
+                <td>
+                        <div class="btn-group">
+                          <a href="${tu}" class="btn btn-primary">View</a>
+                          <a class="ru" href="#" data-xf='${t?.tnum}' class="btn btn-danger">Remove</a>
+                       </div>  
+                </td>
+                </tr>
+               `
+               jQuery('#results-tbody').html(htmlData)
+             }
+            }
+            else{
+              alert('No trackings found')
+            }
          }else{
-          alert('Tracking information not added, please try again')
+          alert('Tracking information not found, please try again')
          }
        }
        else{

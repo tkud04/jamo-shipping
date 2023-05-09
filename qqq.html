@@ -11,7 +11,7 @@
 <meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
 <link rel="canonical" href="https://www.un.org/ldcportal/content/diplomatic-training" />
 <link rel="shortlink" href="https://www.un.org/ldcportal/node/939" />
-  <title>Add Tracking | LDC Portal - International Support Measures for Least Developed Countries</title>
+  <title>Tracking History | LDC Portal - International Support Measures for Least Developed Countries</title>
   <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_CixlRIKn9XQM8CYyetjyXW68u7bBp8US4_3TvZFUGXA.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_19hbP1_IkSx28_xd1rolZcAYzMWHclD5SfN4zvYM3gw.css" media="all" />
 <link type="text/css" rel="stylesheet" href="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/css/css_LzYtTWRSzwgpMw6a8CSuZeupZm2kvyx-hbajUDynN9c.css" media="all" />
@@ -213,87 +213,43 @@
    
     <div class="row">
         <div class="col-md-12">
-          <form id="add-tracking-form">
-            <div class="row">
-               <div class="mb-3 form-group col-md-12">
-                <h2 class="">Shipper Information</h2>
-          </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Name</label>
-                  <input type="text" class="form-control" id="sname" name="sname" placeholder="Shipper name">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Phone number</label>
-                  <input type="number" class="form-control" id="sphone" name="sphone" placeholder="Shipper phone number">
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Address</label>
-                  <input type="text" class="form-control" id="sadd" name="sadd" placeholder="Shipper address">
-                </div>
-            </div>
- 
+            <div class="table-responsive">
+                <table class="table table-striped table-sm data-table">
+                    <thead>
+                        <tr>
+                          <th>Tracking #</th>
+                          <th>Location</th>
+                          <th>Status</th>
+                          <th>Date/Time</th>
+                          <th>Remarks</th>
+                        </tr>
+                     </thead>
+                  <tbody id="results-tbody">
+                    
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+          <form id="add-tracking-history-form">
+
             <div class="row mt-5">
                <div class="mb-3 form-group col-md-12">
-                <h2 class="">Receiver Information</h2>
+                <h2 class="">Add Tracking History</h2>
           </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Name</label>
-                  <input type="text" class="form-control" id="rname" name="rname" placeholder="Receiver name">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Phone number</label>
-                  <input type="number" class="form-control" id="rphone" name="rphone" placeholder="Receiver phone number">
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Address</label>
-                  <input type="text" class="form-control" id="radd" name="radd" placeholder="Receiver address">
-                </div>
-            </div>
- 
- 
-            <div class="row mt-5">
-               <div class="mb-3 form-group col-md-12">
-                <h2 class="">Shipping Information</h2>
-          </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Ship Type</label>
-                  <input type="text" class="form-control" id="stype" name="stype" placeholder="Ship type">
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Weight (kg)</label>
-                  <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight (kg)">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Origin Office</label>
-                  <input type="text" class="form-control" id="origin" name="origin" placeholder="Origin office">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Destination Office</label>
-                  <input type="text" class="form-control" id="dest" name="dest" placeholder="Destination office">
-                </div>
-                <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Description</label>
-                  <textarea class="form-control" id="description" name="description" placeholder="Description" rows="15"></textarea>
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Freight ($)</label>
-                  <input type="text" class="form-control" id="freight" name="freight" placeholder="Freight ($)">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Booking mode</label>
-                 <select class="form-control" id="bmode" name="bmode">
-                     <option value="none">Select booking mode</option>
-                     <option value="paid">Paid</option>
-                     <option value="unpaid">Unpaid</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                  <label class="control-label">Mode</label>
-                  <input type="text" class="form-control" id="mode" name="mode" placeholder="Mode">
-                </div>
+               <div class="form-group col-md-6">
+                <label class="control-label">Location</label>
+                <input type="text" class="form-control" id="h-location" name="location" placeholder="Location">
+              </div>
+               
                 <div class="form-group col-md-6 mt-3">
                   <label class="control-label">Tracking Status</label>
-                  <select class="form-control" id="tracking-status" name="status">
+                  <select class="form-control" id="h-status" name="status">
                       <option value="none">Select status</option>
                       <option value="station">ARRIVED AT STATION</option>
                       <option value="hold">ON HOLD</option>
@@ -303,12 +259,12 @@
                   </select>
                 </div>
                 <div class="form-group col-md-12 mt-3">
-                  <label class="control-label">Pickup Date</label>
-                  <input type="text" class="form-control" id="pickup-at" name="pickup_at" placeholder="Pickup date (dd/mm/YYYY)">
+                    <label class="control-label">Remarks</label>
+                    <textarea class="form-control" id="h-remarks" name="remarks" placeholder="Remarks"></textarea>
                 </div>
  
                 <div class="form-group col-md-12 mt-3">
-                  <button class="btn btn-primary" id="add-tracking-submit">SUBMIT</button>
+                  <button class="btn btn-primary" id="add-history-submit">SUBMIT</button>
                 </div>
             </div>
  
@@ -465,56 +421,102 @@ visibility: visible !important;
 
 <script>
   jQuery(document).ready(() => {
-    jQuery('#add-tracking-submit').click(e => {
+    const params = new URLSearchParams(location.search)
+    let xf = params.get('xf')
+    console.log({xf})
+    if(xf.length > 0){
+      getTrackingHistory(xf)
+    }
+
+    jQuery('#add-history-submit').click(e => {
       e.preventDefault()
 
       // hideElem('#track-popup-tnum-error');
-      let sname = jQuery('#sname').val(), sadd = jQuery('#sadd').val(),  sphone = jQuery('#sphone').val(),
-      rname = jQuery('#rname').val(), radd = jQuery('#radd').val(), rphone = jQuery('#rphone').val()
-
-      let stype= jQuery('#stype').val(), weight = jQuery('#weight').val(), origin = jQuery('#origin').val(), dest = jQuery('#dest').val(),
-      description = jQuery('#description').val(), freight = jQuery('#freight').val(), bmode = jQuery('#bmode').val(), 
-      mode = jQuery('#mode').val(), trackingStatus = jQuery('#tracking-status').val(), pickupAt = jQuery('#pickup-at').val(),
-      validation = (sname == "" || sphone == "" || sadd == "" ||
-                    rname == "" || rphone == "" || radd == "" ||
-                    stype == "" || weight == "" || origin == "" || dest == "" ||
-                    description == "" || freight == "" || bmode == "none" || mode == "" ||
-                    trackingStatus == "none" || pickupAt == ""
-                   )
+      let location = jQuery('#h-location').val(), status = jQuery('#h-status').val(),  remarks = jQuery('#h-remarks').val(),
+      validation = (location == "" || status == "none" || remarks == "");
 
       if(validation){
-       alert("Please fill all required fields.")
+        Swal.fire({
+          icon: 'error',
+                title: "Please fill all required fields."
+              });
       }
       else{
     
        let fd = new FormData()
-       fd.append('sname',sname)
-       fd.append('sphone',sphone)
-       fd.append('sadd',sadd)
-       fd.append('rname',rname)
-       fd.append('rphone',rphone)
-       fd.append('radd',radd)
-       fd.append('stype',stype)
-       fd.append('sname',sname)
-       fd.append('weight',weight)
-       fd.append('origin',origin)
-       fd.append('bmode',bmode)
-       fd.append('freight',freight)
-       fd.append('mode',mode)
-       fd.append('description',description)
-       fd.append('dest',dest)
-       fd.append('pickup_at',pickupAt)
-       fd.append('status',trackingStatus)
+       fd.append('tnum',xf)
+       fd.append('location',location)
+       fd.append('status',status)
+       fd.append('remarks',remarks)
 
-       addTracking(fd)
+       addTrackingHistory(fd,xf)
       }
 
      
     })
   })
 
-  const addTracking = async (fd) => {
-        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/xxx`,
+  const getTrackingHistory = async (tnum) => {
+        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/qqq?tnum=${tnum}`)
+
+        let response = null
+
+        try{
+         response = await fetch(req)
+        }
+        catch(err){
+         console.log({err})
+        }
+
+       if(response.status === 200){
+         const responseJSON = await response.json()
+        
+         if(responseJSON?.status === 'ok'){
+            console.log({responseJSON})
+            if(responseJSON?.data.length > 0){
+             let htmlData = ``
+             let statuses = {
+                'none': "Select status", 
+                'station': "ARRIVED AT STATION", 
+                'hold': "ON HOLD", 
+                'transit': "IN TRANSIT", 
+                'delivery': "OUT FOR DELIVERY", 
+                'delivered': "DELIVERED"
+             }
+             
+                        
+
+             for(let t of responseJSON?.data){
+               
+               htmlData += `
+               <tr>
+                <td>${t?.tnum}</td>
+                <td>${t?.location}</td>
+                <td>${statuses[t?.status]}</td>
+                <td>${t?.date}</td>
+                <td>${t?.remarks}</td>
+               </tr>
+               `
+               jQuery('#results-tbody').html(htmlData)
+             }
+            }
+            else{
+              alert('No trackings found')
+            }
+         }else{
+          alert('Tracking information not found, please try again')
+         }
+       }
+       else{
+         const responseJSON = await response.json()
+         console.log({responseJSON})
+        alert('We could not process your request, please try again in a few minutes')
+       }
+
+    }
+
+    const addTrackingHistory = async (fd,xf) => {
+        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/qqq`,
         {
           method: 'POST',
           body: fd
@@ -534,10 +536,10 @@ visibility: visible !important;
          console.log({responseJSON})
 
          if(responseJSON?.status === 'ok'){
-             alert('Tracking information added!')
-             window.location.replace('yyy.html')
+             alert('Tracking history added!')
+             window.location.replace(`qqq.html?xf=${xf}`)
          }else{
-          alert('Tracking information not added, please try again')
+          alert('Tracking history not added, please try again')
          }
        }
        else{
