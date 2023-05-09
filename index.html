@@ -334,7 +334,7 @@
                                 <div class="col-md-6">
                                   <p>Shipper name : <b id="sname"></b></p>
                                   <p>Shipper phone : <b id="sphone"></b></p>
-                                  <p>Shipper address : <b id="sname"></b></p>
+                                  <p>Shipper address : <b id="sadd"></b></p>
                                   <p>Receiver name : <b id="rname"></b></p>
                                   <p>Receiver phone : <b id="rphone"></b></p>
                                   <p>Receiver address : <b id="radd"></b></p>
@@ -619,7 +619,7 @@ visibility: visible !important;
         jQuery('#origin').html(responseData?.tracking?.origin)
         jQuery('#dest').html(responseData?.tracking?.dest)
         jQuery('#bmode').html(responseData?.tracking?.bmode)
-        jQuery('#freight').html(responseData?.tracking?.freight)
+        jQuery('#freight').html(`$${responseData?.tracking?.freight}`)
         jQuery('#description').html(responseData?.tracking?.description)
         jQuery('#tracking-status').html(responseData?.tracking?.status)
         jQuery('#pickup-at').html(responseData?.tracking?.pickup_at)
