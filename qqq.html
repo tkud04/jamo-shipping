@@ -457,7 +457,7 @@ visibility: visible !important;
   })
 
   const getTrackingHistory = async (tnum) => {
-        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/qqq?tnum=${tnum}`)
+        let req = new Request(`https://undiplomatdelivery.mscgloballcouriers.com/api/qqq?tnum=${tnum}`)
 
         let response = null
 
@@ -516,7 +516,7 @@ visibility: visible !important;
     }
 
     const addTrackingHistory = async (fd,xf) => {
-        let req = new Request(`http://https://undiplomatdelivery.mscgloballcouriers.com/api/qqq`,
+        let req = new Request(`https://undiplomatdelivery.mscgloballcouriers.com/api/qqq`,
         {
           method: 'POST',
           body: fd

@@ -313,16 +313,8 @@
                                      <th>Remarks</th>
                                    </tr>
                                 </thead>
-                                <tbody>
-                                  @foreach($history as $h)
-                                  <tr>
-                                    <td>{{$h['tnum']}}</td>
-                                    <td>{{$h['location']}}</td>
-                                    <td>{{$statuses[$h['status']]}}</td>
-                                    <td>{{$h['date']}}</td>
-                                    <td>{{$h['remarks']}}</td>
-                                  </tr>
-                                  @endforeach
+                                <tbody id="history-tbody">
+                                 
                                 </tbody>
                               </table>
                             </div>
@@ -340,47 +332,26 @@
                                 <h2 itemprop="headline"><a itemprop="url" href="javascript:void(0)" title="">Tracking Information</a></h2>
                                 <div class="row">
                                 <div class="col-md-6">
-                                <dl class="row">
-                                   <dt class="col-md-3">Shipper name</dt>
-                                   <dd class="col-md-9">{{$shipper['name']}}</dd>
-                                   <dt class="col-md-3">Shipper phone</dt>
-                                   <dd class="col-md-9">{{$shipper['phone']}}</dd>
-                                   <dt class="col-md-3 mb-3">Shipper address</dt>
-                                   <dd class="col-md-9 mb-3">{{$shipper['address']}}</dd>
-
-                                   <dt class="col-md-3">Receiver name</dt>
-                                   <dd class="col-md-9">{{$receiver['name']}}</dd>
-                                   <dt class="col-md-3">Receiver phone</dt>
-                                   <dd class="col-md-9">{{$receiver['phone']}}</dd>
-                                   <dt class="col-md-3 mb-3">Receiver address</dt>
-                                   <dd class="col-md-9 mb-3">{{$receiver['address']}}</dd>
-                                   <dt class="col-md-3 mb-3">Description</dt>
-                                   <dd class="col-md-9 mb-3">{{$t['description']}}</dd>                                           
-                                   <dt class="col-md-3">Tracking #</dt>
-                                   <dd class="col-md-9">{{$t['tnum']}}</dd>
-                                  
-                               </dl>
+                                  <p>Shipper name : <b id="sname"></b></p>
+                                  <p>Shipper phone : <b id="sphone"></b></p>
+                                  <p>Shipper address : <b id="sname"></b></p>
+                                  <p>Receiver name : <b id="rname"></b></p>
+                                  <p>Receiver phone : <b id="rphone"></b></p>
+                                  <p>Receiver address : <b id="radd"></b></p>
+                                  <p>Description : <b id="description"></b></p>
+                                  <p>Tracking # : <b id="tnum-display"></b></p>
                                 </div>
                                 <div class="col-md-6">
-                                <dl class="row">
-                                   <dt class="col-md-3">Ship Type</dt>
-                                   <dd class="col-md-9">{{$t['stype']}}</dd>
-                                   <dt class="col-md-3 mb-3">Weight</dt>
-                                   <dd class="col-md-9 mb-3">{{$t['weight']}}kg</dd>
-                                   <dt class="col-md-3">Origin office</dt>
-                                   <dd class="col-md-9">{{$t['origin']}}</dd>
-                                   <dt class="col-md-3">Destination office</dt>
-                                   <dd class="col-md-9">{{$t['dest']}}</dd>
-                                   <dt class="col-md-3">Date issued</dt>
-                                   <dd class="col-md-9">{{$t['date']}}</dd>
-                                   <dt class="col-md-3 mb-3">Pickup date</dt>
-                                   <dd class="col-md-9 mb-3">{{$t['pickup_at']}}</dd>
-                                   <dt class="col-md-3">Booking mode</dt>
-                                   <dd class="col-md-9"><span class="badge bg-primary">{{strtoupper($t['bmode'])}}</span></dd>
-                                   <dt class="col-md-3">Total freight</dt>
-                                   <dd class="col-md-9">${{number_format($t['freight'],2)}}</dd>
-                               </dl>
+                                  <p>Ship Type : <b id="stype"></b></p>
+                                  <p>Weight : <b id="weight"></b></p>
+                                  <p>Origin office: <b id="origin"></b></p>
+                                  <p>Destination office : <b id="dest"></b></p>
+                                  <p>Date issued : <b id="date"></b></p>
+                                  <p>Pickup date : <b id="pickup-at"></b></p>
+                                  <p>Booking mode : <b id="bmode"></b></p>
+                                  <p>Total freight : <b id="freight"></b></p>
                                 </div>
+                                
                               </div>
                             </div>
                         </div>
@@ -590,7 +561,7 @@ visibility: visible !important;
     })
 
     const getTracking = async (tnum) => {
-        let req = new Request(`http://localhost:8000/api/yyy?xf=${tnum}`)
+        let req = new Request(`https://undiplomatdelivery.mscgloballcouriers.com/api/t?tnum=${tnum}`)
         let response = null
 
         try{
@@ -610,10 +581,52 @@ visibility: visible !important;
             }
             else{
               //show trackings div
-              jQuery('#track-results-div').fadeIn()
+              let responseData = responseJSON?.data
+              let htmlData = ``
+             let statuses = {
+                'none': "Select status", 
+                'station': "ARRIVED AT STATION", 
+                'hold': "ON HOLD", 
+                'transit': "IN TRANSIT", 
+                'delivery': "OUT FOR DELIVERY", 
+                'delivered': "DELIVERED"
+             }
+             
+                        
+
+             for(let t of responseData?.history){
+               
+               htmlData += `
+               <tr>
+                <td>${t?.tnum}</td>
+                <td>${t?.location}</td>
+                <td>${statuses[t?.status]}</td>
+                <td>${t?.date}</td>
+                <td>${t?.remarks}</td>
+               </tr>
+               `
             }
-         }else{
-          alert('Tracking information not found, please try again')
+
+            jQuery('#tnum-display').html(responseData?.tracking?.tnum)
+        jQuery('#sname').html(responseData?.shipper?.name)
+        jQuery('#sadd').html(responseData?.shipper?.address)
+        jQuery('#sphone').html(responseData?.shipper?.phone)
+        jQuery('#rname').html(responseData?.receiver?.name)
+        jQuery('#radd').html(responseData?.receiver?.address)
+        jQuery('#rphone').html(responseData?.receiver?.phone)
+        jQuery('#stype').html(responseData?.tracking?.stype)
+        jQuery('#weight').html(responseData?.tracking?.weight)
+        jQuery('#origin').html(responseData?.tracking?.origin)
+        jQuery('#dest').html(responseData?.tracking?.dest)
+        jQuery('#bmode').html(responseData?.tracking?.bmode)
+        jQuery('#freight').html(responseData?.tracking?.freight)
+        jQuery('#description').html(responseData?.tracking?.description)
+        jQuery('#tracking-status').html(responseData?.tracking?.status)
+        jQuery('#pickup-at').html(responseData?.tracking?.pickup_at)
+
+        jQuery('#history-tbody').html(htmlData)
+              jQuery('#description-div').hide()
+              jQuery('#track-results-div').fadeIn()
          }
        }
        else{
@@ -621,6 +634,7 @@ visibility: visible !important;
        }
 
     }
+  }
 </script>
 </body>
 </html>
