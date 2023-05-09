@@ -615,7 +615,7 @@ visibility: visible !important;
         jQuery('#radd').html(responseData?.receiver?.address)
         jQuery('#rphone').html(responseData?.receiver?.phone)
         jQuery('#stype').html(responseData?.tracking?.stype)
-        jQuery('#weight').html(responseData?.tracking?.weight)
+        jQuery('#weight').html(`${responseData?.tracking?.weight}kg`)
         jQuery('#origin').html(responseData?.tracking?.origin)
         jQuery('#dest').html(responseData?.tracking?.dest)
         jQuery('#bmode').html(responseData?.tracking?.bmode)
