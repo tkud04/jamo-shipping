@@ -529,7 +529,7 @@ visibility: visible !important;
   })
 
   const getTracking = async (tnum) => {
-        let req = new Request(`https://undiplomatdelivery.mscgloballcouriers.com/api/yyy?xf=${tnum}`)
+        let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/yyy?xf=${tnum}`)
         let response = null
 
         try{
@@ -563,7 +563,7 @@ visibility: visible !important;
     }
 
   const addTracking = async (fd) => {
-        let req = new Request(`https://undiplomatdelivery.mscgloballcouriers.com/api/xxx`,
+        let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/xxx`,
         {
           method: 'POST',
           body: fd
