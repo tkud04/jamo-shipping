@@ -1,8 +1,65 @@
 const developmentMode = true
-
 const BASE_URL = developmentMode ? 'index.html' : ''
 
-const getTrackings = async () => {
+const trackingStatuses = [
+  {value: 'none', label: 'Select status'},
+  {value: 'station', label: 'ARRIVED AT STATION'},
+  {value: 'hold', label: 'ON HOLD'},
+  {value: 'transit', label: 'IN TRANSIT'},
+  {value: 'delivery', label: 'OUT FOR DELIVERY'},
+  {value: 'delivered', label: 'DELIVERED'}
+]
+
+const confirmAction = (actionId,callback) => {
+  const v = confirm('Are you sure? This action cannot be undone')
+
+  if(v){
+    typeof callback === 'function' && callback(actionId)
+  }
+}
+
+const initFirebase = () => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyBMNfl4WYs99xRt3strOCeaNAdCBHuk4aE",
+      authDomain: "lashy-projects.firebaseapp.com",
+      projectId: "lashy-projects",
+      storageBucket: "lashy-projects.appspot.com",
+      messagingSenderId: "1019548262418",
+      appId: "1:1019548262418:web:59f6bd06122d39aeb3b8cb",
+      measurementId: "G-VDEVYCMQ8Z"
+      }
+    
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig)
+      
+}
+
+const getDB = () => {
+    //const analytics = firebase.getAnalytics(app)
+    let ret = firebase?.firestore()
+     return ret
+}
+
+const digestDate = (standardizedDate) => {
+    const dateTimeArr = standardizedDate.split('T')
+    let ret = {dateArr:[],timeArr:[]}
+  
+    if(dateTimeArr.length === 2){  
+      const dateArr = dateTimeArr[0].split('-')
+      const timeArr = dateTimeArr[1].split(':')
+      ret.dateArr = dateArr
+      ret.timeArr = timeArr
+    }
+  
+    return ret
+    
+}
+
+const getSapNumber = (max=1) => {
+  return Math.floor(Math.random() * max)
+}
+
+const getTrackings2 = async () => {
     let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/xxx`)
 
     let response = null
@@ -86,7 +143,7 @@ const getTrackings = async () => {
 
 }
 
-const getTracking = async (tnum) => {
+const getTracking2 = async (tnum) => {
     let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/yyy?xf=${tnum}`)
     let response = null
 
@@ -120,7 +177,42 @@ const getTracking = async (tnum) => {
 
 }
 
-const addTracking = async (fd) => {
+const getTrackings = (successCallback,errorCallback,type='all') => {
+  const db = getDB()
+  let coll = null
+
+  if(type === 'active'){
+     coll =  db.collection('sapphire-trackings').where('status','==','active')
+  }
+  else if(type === 'all'){
+    coll =  db.collection('sapphire-trackings')
+  }
+
+    coll?.get()
+    .then((querySnapshot) => {
+      typeof successCallback === 'function' && successCallback(querySnapshot)
+    })
+    .catch((err) => {
+      console.log('error in getTrackings: ',err)
+      typeof errorCallback === 'function' && errorCallback(err)
+    })
+}
+
+const getTracking = async (tnum,successCallback,errorCallback) => {
+  const db = getDB()
+  
+  const docRef = db.collection('sapphire-trackings').doc(tnum)
+  docRef?.get()
+    .then((d) => {
+     typeof successCallback === 'function' && successCallback(d)
+    })
+    .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+    })
+
+}
+
+const addTracking2 = async (fd) => {
     let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/xxx`,
     {
       method: 'POST',
@@ -154,6 +246,120 @@ const addTracking = async (fd) => {
    }
 
 }
+
+const addTracking = (
+  data={
+    info: {
+      booking_mode:'',
+      description:'',
+      destination_office:'',
+      freight:'',
+      origin_office:'',
+      pickup_date:'',
+      ship_type:'',
+      weight:'',
+    },
+    receiver: {
+      address: '',
+      name: '',
+      phone: ''
+    },
+    shipper: {
+      address: '',
+      name: '',
+      phone: ''
+    }
+  },
+  successCallback,errorCallback) => {
+  const db = getDB()
+  data.date = new Date().toISOString()
+  const tnum = `SAP${getSapNumber(999999)}`
+  db.collection('sapphire-trackings').doc(tnum)
+  .set({
+      ...data.info,
+      date: data.date
+  })
+  .then(() => {
+    db.collection('sapphire-shippers').doc(tnum)
+    .set({
+        ...data.shipper
+    })
+    .then(() => {
+      db.collection('sapphire-receivers').doc(tnum)
+      .set({
+          ...data.receiver
+      })
+      .then(() => {
+        typeof successCallback === 'function' && successCallback()
+      })
+    })
+
+    
+      
+  })
+  .catch(err => {
+      console.log('Failed to add tracking: ',err)
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
+const updateTracking = (
+  data={
+    xf:'',
+    info: {
+      booking_mode:'',
+      description:'',
+      destination_office:'',
+      freight:'',
+      origin_office:'',
+      pickup_date:'',
+      ship_type:'',
+      weight:'',
+    },
+    receiver: {
+      address: '',
+      name: '',
+      phone: ''
+    },
+    shipper: {
+      address: '',
+      name: '',
+      phone: ''
+    }
+  },
+  successCallback,errorCallback) => {
+  const db = getDB()
+  data.date = new Date().toISOString()
+  const tnum = data.xf
+  db.collection('sapphire-trackings').doc(tnum)
+  .update({
+      ...data.info,
+      date: data.date
+  })
+  .then(() => {
+    db.collection('sapphire-shippers').doc(tnum)
+    .update({
+        ...data.shipper
+    })
+    .then(() => {
+      db.collection('sapphire-receivers').doc(tnum)
+      .update({
+          ...data.receiver
+      })
+      .then(() => {
+        typeof successCallback === 'function' && successCallback()
+      })
+    })
+
+    
+      
+  })
+  .catch(err => {
+      console.log('Failed to add tracking: ',err)
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
 
 const updateResult = (dt) => {
     jQuery('#xf').val(dt?.tnum)
@@ -266,4 +472,16 @@ const addTrackingHistory = async (fd,xf) => {
     alert('We could not process your request, please try again in a few minutes')
    }
 
-}a;laapl
+}
+
+/********** COMPONENTS */
+const renderLoading = ({
+  text='',
+  style=''
+}) => {
+  const ret = `
+   <p>${text} <image src="images/loading.gif" style="width: 30px; height: 30px; ${style}" placeholder="${text}"/></p>
+  `
+
+  return ret
+}

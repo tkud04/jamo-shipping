@@ -308,6 +308,7 @@
                 </div>
  
                 <div class="form-group col-md-12 mt-3">
+                  <div id="add-tracking-loading"></div>
                   <button class="btn btn-primary" id="add-tracking-submit">SUBMIT</button>
                 </div>
             </div>
@@ -460,11 +461,30 @@ visibility: visible !important;
           </div><!-- /row -->
       </footer>
   </div>
-  <script src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/js/js_29qYXJz8NLGg8Aomg-RZPjJcj9yEdEst1BMZ9gZbs-4.js"></script>
-<script src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+  <script src="js/js_29qYXJz8NLGg8Aomg-RZPjJcj9yEdEst1BMZ9gZbs-4.js"></script>
+<script src="js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+
+
+<script>
+  const getRandomNumber = (max=2) => {
+    return Math.floor(Math.random() * max)
+  }
+
+  document.writeln(`<script src="js/helpers.js?ver=${getRandomNumber(99999)}"><\/script>`)
+
+  document.writeln(`<script src="js/mmm.js?ver=${getRandomNumber(99999)}"><\/script>`)
+</script>
 
 <script>
   jQuery(document).ready(() => {
+    jQuery('#add-tracking-loading').hide()
+    const loadingHTML = renderLoading({
+          text: 'Processing'
+         })
+         
+         jQuery('#add-tracking-loading').html(loadingHTML)
+ 
+
     jQuery('#add-tracking-submit').click(e => {
       e.preventDefault()
 
@@ -486,67 +506,52 @@ visibility: visible !important;
        alert("Please fill all required fields.")
       }
       else{
-    
-       let fd = new FormData()
-       fd.append('sname',sname)
-       fd.append('sphone',sphone)
-       fd.append('sadd',sadd)
-       fd.append('rname',rname)
-       fd.append('rphone',rphone)
-       fd.append('radd',radd)
-       fd.append('stype',stype)
-       fd.append('sname',sname)
-       fd.append('weight',weight)
-       fd.append('origin',origin)
-       fd.append('bmode',bmode)
-       fd.append('freight',freight)
-       fd.append('mode',mode)
-       fd.append('description',description)
-       fd.append('dest',dest)
-       fd.append('pickup_at',pickupAt)
-       fd.append('status',trackingStatus)
+       jQuery('#add-tracking-submit').hide()
+       jQuery('#add-tracking-loading').fadeIn()
 
-       addTracking(fd)
+       const payload = {
+        info: {
+          booking_mode: bmode,
+          description,
+          destination_office: dest,
+          freight,
+          origin_office: origin,
+          pickup_date: pickupAt,
+          ship_type: stype,
+          weight,
+        },
+        shipper: {
+          name: sname,
+          phone: sphone,
+          address: sadd
+        },
+        receiver: {
+          name: rname,
+          phone: rphone,
+          address: radd
+        },
+        initialStatus: trackingStatus
+       }
+
+       console.log('payload: ',payload)
+
+       addTracking(payload,() => {
+        alert('Tracking information added!')
+        window.location.replace('yyy.html')
+       },
+      (err) => {
+        jQuery('#add-tracking-loading').hide()
+       jQuery('#add-tracking-submit').fadeIn()
+        alert('Tracking information not added, please try again')
+        console.log('failed to add tracking: ',err)
+      })
       }
 
      
     })
   })
 
-  const addTracking = async (fd) => {
-        let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/xxx`,
-        {
-          method: 'POST',
-          body: fd
-        })
 
-        let response = null
-
-        try{
-         response = await fetch(req)
-        }
-        catch(err){
-         console.log({err})
-        }
-
-       if(response.status === 200){
-         const responseJSON = await response.json()
-         console.log({responseJSON})
-
-         if(responseJSON?.status === 'ok'){
-             alert('Tracking information added!')
-             window.location.replace('yyy.html')
-         }else{
-          alert('Tracking information not added, please try again')
-         }
-       }
-       else{
-         const responseJSON = await response.json()
-         console.log({responseJSON})
-        alert('We could not process your request, please try again in a few minutes')
-       }
-
-    }
 </script>
 </body>
 </html>

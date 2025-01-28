@@ -540,8 +540,18 @@ visibility: visible !important;
           </div><!-- /row -->
       </footer>
   </div>
-  <script src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/js/js_29qYXJz8NLGg8Aomg-RZPjJcj9yEdEst1BMZ9gZbs-4.js"></script>
-<script src="https://www.un.org/ldcportal/sites/www.un.org.ldcportal/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+  <script src="js/js_29qYXJz8NLGg8Aomg-RZPjJcj9yEdEst1BMZ9gZbs-4.js"></script>
+<script src="js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+
+<script>
+  const getRandomNumber = (max=2) => {
+    return Math.floor(Math.random() * max)
+  }
+
+  document.writeln(`<script src="js/helpers.js?ver=${getRandomNumber(99999)}"><\/script>`)
+
+  document.writeln(`<script src="js/mmm.js?ver=${getRandomNumber(99999)}"><\/script>`)
+</script>
 
 <script>
     jQuery(document).ready(() => {
