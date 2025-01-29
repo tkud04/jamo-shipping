@@ -611,6 +611,7 @@ jQuery('#history-tbody').html(htmlData)
 
         jQuery('#track-submit').click((e) => {
             e.preventDefault()
+            jQuery('#track-results-div').hide()
             let tnum = jQuery('#tnum').val()
 
             if(tnum.length < 1){
@@ -679,81 +680,7 @@ jQuery('#history-tbody').html(htmlData)
         })
     })
 
-    const getTracking5 = async (tnum) => {
-        let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/t?tnum=${tnum}`)
-        let response = null
 
-        try{
-         response = await fetch(req)
-        }
-        catch(err){
-         console.log({err})
-        }
-
-       if(response.status === 200){
-         const responseJSON = await response.json()
-        
-         if(responseJSON?.status === 'ok'){
-            console.log({responseJSON})
-            if(responseJSON.data.length < 1){
-                alert('Tracking information not found, please try again')
-            }
-            else{
-              //show trackings div
-              let responseData = responseJSON?.data
-              let htmlData = ``
-             let statuses = {
-                'none': "Select status", 
-                'station': "ARRIVED AT STATION", 
-                'hold': "ON HOLD", 
-                'transit': "IN TRANSIT", 
-                'delivery': "OUT FOR DELIVERY", 
-                'delivered': "DELIVERED"
-             }
-             
-                        
-
-             for(let t of responseData?.history){
-               
-               htmlData += `
-               <tr>
-                <td>${t?.tnum}</td>
-                <td>${t?.location}</td>
-                <td>${statuses[t?.status]}</td>
-                <td>${t?.date}</td>
-                <td>${t?.remarks}</td>
-               </tr>
-               `
-            }
-
-            jQuery('#tnum-display').html(responseData?.tracking?.tnum)
-        jQuery('#sname').html(responseData?.shipper?.name)
-        jQuery('#sadd').html(responseData?.shipper?.address)
-        jQuery('#sphone').html(responseData?.shipper?.phone)
-        jQuery('#rname').html(responseData?.receiver?.name)
-        jQuery('#radd').html(responseData?.receiver?.address)
-        jQuery('#rphone').html(responseData?.receiver?.phone)
-        jQuery('#stype').html(responseData?.tracking?.stype)
-        jQuery('#weight').html(`${responseData?.tracking?.weight}kg`)
-        jQuery('#origin').html(responseData?.tracking?.origin)
-        jQuery('#dest').html(responseData?.tracking?.dest)
-        jQuery('#bmode').html(responseData?.tracking?.bmode)
-        jQuery('#freight').html(`$${responseData?.tracking?.freight}`)
-        jQuery('#description').html(responseData?.tracking?.description)
-        jQuery('#tracking-status').html(responseData?.tracking?.status)
-        jQuery('#pickup-at').html(responseData?.tracking?.pickup_at)
-
-        jQuery('#history-tbody').html(htmlData)
-              jQuery('#description-div').hide()
-              jQuery('#track-results-div').fadeIn()
-         }
-       }
-       else{
-        alert('We could not process your request, please try again in a few minutes')
-       }
-
-    }
-  }
 </script>
 </body>
 </html>
