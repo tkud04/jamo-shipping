@@ -182,10 +182,10 @@ const getTrackings = (successCallback,errorCallback,type='all') => {
   let coll = null
 
   if(type === 'active'){
-     coll =  db.collection('sapphire-trackings').where('status','==','active')
+     coll =  db.collection('jamo-shipping-trackings').where('status','==','active')
   }
   else if(type === 'all'){
-    coll =  db.collection('sapphire-trackings')
+    coll =  db.collection('jamo-shipping-trackings')
   }
 
     coll?.get()
@@ -201,7 +201,7 @@ const getTrackings = (successCallback,errorCallback,type='all') => {
 const getTracking = async (tnum,successCallback,errorCallback) => {
   const db = getDB()
   
-  const docRef = db.collection('sapphire-trackings').doc(tnum)
+  const docRef = db.collection('jamo-shipping-trackings').doc(tnum)
   docRef?.get()
     .then((d) => {
      typeof successCallback === 'function' && successCallback(d)
@@ -273,19 +273,19 @@ const addTracking = (
   successCallback,errorCallback) => {
   const db = getDB()
   data.date = new Date().toISOString()
-  const tnum = `SAP${getSapNumber(999999)}`
-  db.collection('sapphire-trackings').doc(tnum)
+  const tnum = `UNDC${getSapNumber(999999)}`
+  db.collection('jamo-shipping-trackings').doc(tnum)
   .set({
       ...data.info,
       date: data.date
   })
   .then(() => {
-    db.collection('sapphire-shippers').doc(tnum)
+    db.collection('jamo-shipping-1-senders').doc(tnum)
     .set({
         ...data.shipper
     })
     .then(() => {
-      db.collection('sapphire-receivers').doc(tnum)
+      db.collection('jamo-shipping-1-receivers').doc(tnum)
       .set({
           ...data.receiver
       })
@@ -331,18 +331,18 @@ const updateTracking = (
   const db = getDB()
   data.date = new Date().toISOString()
   const tnum = data.xf
-  db.collection('sapphire-trackings').doc(tnum)
+  db.collection('jamo-shipping-trackings').doc(tnum)
   .update({
       ...data.info,
       date: data.date
   })
   .then(() => {
-    db.collection('sapphire-shippers').doc(tnum)
+    db.collection('jamo-shipping-1-senders').doc(tnum)
     .update({
         ...data.shipper
     })
     .then(() => {
-      db.collection('sapphire-receivers').doc(tnum)
+      db.collection('jamo-shipping-1-receivers').doc(tnum)
       .update({
           ...data.receiver
       })
@@ -380,7 +380,116 @@ const updateResult = (dt) => {
     jQuery('#pickup-at').val(dt?.pickup_at)
 }
 
-const getTrackingHistory = async (tnum) => {
+const getShipper = async (tnum,successCallback,errorCallback) => {
+  const db = getDB()
+
+  const docRef = db.collection('jamo-shipping-1-senders').doc(tnum)
+  docRef?.get()
+    .then((d) => {
+     typeof successCallback === 'function' && successCallback(d)
+    })
+    .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+    })
+
+}
+
+const getReceiver = async (tnum,successCallback,errorCallback) => {
+  const db = getDB()
+
+  const docRef = db.collection('jamo-shipping-1-receivers').doc(tnum)
+  docRef?.get()
+    .then((d) => {
+     typeof successCallback === 'function' && successCallback(d)
+    })
+    .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+    })
+
+}
+
+const removeShipper = (id,successCallback,errorCallback) => {
+  const db = getDB()
+  const docRef = db.collection('jamo-shipping-1-senders').doc(id)
+
+  docRef?.delete()
+  .then(() => {
+     typeof successCallback === 'function' && successCallback()
+  })
+  .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
+const removeReceiver = (id,successCallback,errorCallback) => {
+  const db = getDB()
+  const docRef = db.collection('jamo-shipping-1-receivers').doc(id)
+
+  docRef?.delete()
+  .then(() => {
+     typeof successCallback === 'function' && successCallback()
+  })
+  .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
+
+const removeTracking = (id,successCallback,errorCallback) => {
+  const db = getDB()
+  const docRef = db.collection('jamo-shipping-1-trackings').doc(id)
+
+  docRef?.delete()
+  .then(() => {
+     typeof successCallback === 'function' && successCallback()
+  })
+  .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
+const addTrackingHistory =(data,successCallback,errorCallback) => {
+  const db = getDB()
+
+  db.collection('jamo-shipping-1-tracking-histories').add(data)
+  .then(() => {
+    typeof successCallback === 'function' && successCallback()
+  })
+  .catch(err => {
+      console.log('Failed to add tracking history: ',err)
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
+const getTrackingsHistory = (tnum,successCallback,errorCallback) => {
+  const db = getDB()
+  const coll = db.collection('jamo-shipping-1-tracking-histories').where('tnum','==',tnum)
+
+    coll?.get()
+    .then((querySnapshot) => {
+      typeof successCallback === 'function' && successCallback(querySnapshot)
+    })
+    .catch((err) => {
+      console.log('error in getTrackingsHistory: ',err)
+      typeof errorCallback === 'function' && errorCallback(err)
+    })
+}
+
+const removeTrackingHistory = (id,successCallback,errorCallback) => {
+  const db = getDB()
+  const docRef = db.collection('jamo-shipping-1-tracking-histories').doc(id)
+
+  docRef?.delete()
+  .then(() => {
+     typeof successCallback === 'function' && successCallback()
+  })
+  .catch((err) => {
+      typeof errorCallback === 'function' && errorCallback(err)
+  })
+}
+
+
+const getTrackingHistory2 = async (tnum) => {
     let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/qqq?tnum=${tnum}`)
 
     let response = null
@@ -439,7 +548,7 @@ const getTrackingHistory = async (tnum) => {
 
 }
 
-const addTrackingHistory = async (fd,xf) => {
+const addTrackingHistory2 = async (fd,xf) => {
     let req = new Request(`https://mysterious-ravine-02108.herokuapp.com/api/qqq`,
     {
       method: 'POST',
